@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cirpi Services — Meet the team. A professional employee showcase page." />
+  <meta name="robots" content="index, follow" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; img-src 'self' data:;" />
   <title>Cirpi Services — Meet Our Team</title>
   <style>
 /* ============================================================
@@ -210,62 +213,6 @@ body {
 .stat + .stat {
   padding-top: 24px;
   border-top: 1px solid var(--border);
-}
-
-/* ============================================================
-   FILTER BAR
-   ============================================================ */
-.filter-bar {
-  background: var(--bg-hero);
-  border-bottom: 1px solid var(--border);
-  padding: 16px 0;
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-.filter-bar__inner {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-/* Search input */
-.search-wrap {
-  position: relative;
-}
-
-.search-icon {
-  position: absolute;
-  left: 12px; top: 50%;
-  transform: translateY(-50%);
-  width: 16px; height: 16px;
-  color: var(--text-muted);
-  pointer-events: none;
-}
-
-.search-input {
-  background: var(--bg-chip);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-chip);
-  color: var(--text-primary);
-  font-family: var(--font-body);
-  font-size: 13px;
-  padding: 7px 16px 7px 36px;
-  width: 220px;
-  outline: none;
-  transition: all var(--transition);
-}
-
-.search-input::placeholder { color: var(--text-muted); }
-
-.search-input:focus {
-  border-color: rgba(79,142,247,0.5);
-  background: #1a2035;
-  box-shadow: 0 0 0 3px rgba(79,142,247,0.12);
 }
 
 /* ============================================================
@@ -667,19 +614,11 @@ body {
     </div>
   </header>
 
-  <!-- ===== FILTER BAR ===== -->
-  <section class="filter-bar" aria-label="Search team">
-    <div class="container">
-      <div class="filter-bar__inner">
-        <!-- Search input -->
-        <div class="search-wrap">
-          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-          </svg>
-          <input type="search" id="searchInput" class="search-input" placeholder="Search by name or role…" />
-        </div>
-      </div>
+  <!-- ===== ABOUT ===== -->
+  <section style="background:var(--bg-hero);border-bottom:1px solid var(--border);padding:40px 24px;">
+    <div class="container" style="max-width:720px;">
+      <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--accent-blue);margin-bottom:12px;">About Cirpi Services</p>
+      <p style="font-size:15px;color:var(--text-secondary);line-height:1.8;">Cirpi Services is a passionate team of builders, designers, and strategists working together to deliver meaningful digital products. This page showcases our team members and their individual portfolios.</p>
     </div>
   </section>
 
@@ -995,53 +934,25 @@ body {
 (function () {
   "use strict";
 
-  const searchInput = document.getElementById("searchInput");
-  const teamCards   = document.querySelectorAll(".card");
-  const toast       = document.getElementById("cs-toast");
+  const teamCards = document.querySelectorAll(".card");
+  const toast     = document.getElementById("cs-toast");
   let toastTimer;
-  let searchQuery   = "";
 
-  /* ---- Portfolio click ---- */
   teamCards.forEach(function (card) {
     card.addEventListener("click", function (e) {
-      if (e.target.closest(".social-btn")) return; // let social buttons work normally
+      if (e.target.closest(".social-btn")) return;
       const url = card.getAttribute("data-portfolio");
       if (url && url !== "#") {
         window.location.href = url;
       } else {
-        showToast("\uD83D\uDD17 Portfolio coming soon");
+        toast.textContent = "Portfolio coming soon";
+        toast.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { toast.classList.remove("show"); }, 2500);
       }
     });
   });
 
-  function showToast(msg) {
-    toast.textContent = msg;
-    toast.classList.add("show");
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () { toast.classList.remove("show"); }, 2500);
-  }
-
-  /* ---- Search ---- */
-  function applySearch() {
-    const q = searchQuery.trim().toLowerCase();
-    teamCards.forEach(function (card) {
-      const name = (card.getAttribute("data-name") || "").toLowerCase();
-      const role = (card.getAttribute("data-role") || "").toLowerCase();
-      const match = q === "" || name.includes(q) || role.includes(q);
-      match ? card.removeAttribute("hidden") : card.setAttribute("hidden", "");
-    });
-  }
-
-  searchInput.addEventListener("input", function () {
-    searchQuery = searchInput.value;
-    applySearch();
-  });
-
-  searchInput.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") { searchInput.value = ""; searchQuery = ""; applySearch(); }
-  });
-
-  /* ---- Intersection Observer ---- */
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
