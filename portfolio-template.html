@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name — Portfolio | Cirpi Services</title>
+  <style>
+    :root {
+      --accent: #4F8EF7; /* change this to your card accent color */
+      --bg: #080D1A;
+      --bg-card: #111827;
+      --bg-surface: #1A2035;
+      --border: rgba(255,255,255,0.07);
+      --text: #E2E8F0;
+      --text-muted: #8B98B1;
+      --font-display: 'Syne', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --transition: 0.28s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      background-image:
+        radial-gradient(circle at 20% 0%, rgba(79,142,247,0.06) 0%, transparent 55%),
+        radial-gradient(circle at 80% 90%, rgba(167,139,250,0.05) 0%, transparent 50%);
+    }
+
+    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+    /* ---- Back button ---- */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 20px 0 0;
+      transition: color var(--transition);
+    }
+    .back-btn:hover { color: var(--text); }
+    .back-btn svg { width: 16px; height: 16px; }
+
+    /* ---- Hero ---- */
+    .p-hero {
+      padding: 48px 0 40px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .p-avatar {
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 0 6px rgba(79,142,247,0.12);
+      flex-shrink: 0;
+    }
+
+    .p-avatar--placeholder {
+      background: var(--bg-surface);
+      border: 2px dashed rgba(255,255,255,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+    .p-avatar--placeholder::after {
+      content: '';
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.07);
+      position: absolute;
+      top: 14px; left: 50%; transform: translateX(-50%);
+    }
+    .p-avatar--placeholder::before {
+      content: '';
+      width: 62px; height: 32px;
+      border-radius: 32px 32px 0 0;
+      background: rgba(255,255,255,0.07);
+      position: absolute;
+      bottom: 0; left: 50%; transform: translateX(-50%);
+    }
+
+    .p-hero__info { display: flex; flex-direction: column; gap: 6px; }
+
+    .p-name {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .p-role {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .p-tagline {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ---- Social links ---- */
+    .p-socials {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .p-social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 7px 14px;
+      transition: all var(--transition);
+    }
+    .p-social-btn svg { width: 14px; height: 14px; }
+    .p-social-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(79,142,247,0.08);
+    }
+
+    /* ---- Sections ---- */
+    .p-section { padding: 40px 0; border-bottom: 1px solid var(--border); }
+    .p-section:last-child { border-bottom: none; }
+
+    .p-section__title {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    /* About */
+    .p-about {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.8;
+      max-width: 640px;
+    }
+
+    /* Skills */
+    .p-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .p-skill {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      padding: 6px 16px;
+    }
+
+    /* Projects */
+    .p-projects { display: flex; flex-direction: column; gap: 16px; }
+
+    .p-project {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: border-color var(--transition);
+    }
+    .p-project:hover { border-color: rgba(79,142,247,0.3); }
+
+    .p-project__name {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .p-project__desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .p-project__link {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      width: fit-content;
+      margin-top: 4px;
+    }
+    .p-project__link:hover { text-decoration: underline; }
+
+    /* Footer */
+    .p-footer {
+      padding: 32px 0;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .p-footer a { color: var(--accent); text-decoration: none; }
+    .p-footer a:hover { text-decoration: underline; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .p-hero { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .p-avatar { width: 80px; height: 80px; }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Back to team -->
+    <a href="index.html" class="back-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to Team
+    </a>
+
+    <!-- Hero -->
+    <div class="p-hero">
+      <!-- TODO: replace src with your actual photo URL -->
+      <!-- <img src="your-photo.jpg" alt="Your Name" class="p-avatar" /> -->
+      <div class="p-avatar p-avatar--placeholder"></div>
+      <div class="p-hero__info">
+        <!-- TODO: fill in your name, role, tagline -->
+        <h1 class="p-name">Your Name</h1>
+        <p class="p-role">Your Role</p>
+        <p class="p-tagline">One line that describes what you do or who you are.</p>
+        <div class="p-socials">
+          <!-- TODO: replace href values with your actual links -->
+          <a href="#" class="p-social-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+          <a href="#" class="p-social-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            GitHub
+          </a>
+          <a href="mailto:you@email.com" class="p-social-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- About -->
+    <section class="p-section">
+      <p class="p-section__title">About</p>
+      <!-- TODO: write a short bio about yourself -->
+      <p class="p-about">
+        Write a few sentences about yourself here. What do you do, what are you passionate about, and what makes you unique as a professional?
+      </p>
+    </section>
+
+    <!-- Skills -->
+    <section class="p-section">
+      <p class="p-section__title">Skills</p>
+      <div class="p-skills">
+        <!-- TODO: replace with your actual skills -->
+        <span class="p-skill">Skill One</span>
+        <span class="p-skill">Skill Two</span>
+        <span class="p-skill">Skill Three</span>
+        <span class="p-skill">Skill Four</span>
+        <span class="p-skill">Skill Five</span>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="p-section">
+      <p class="p-section__title">Projects</p>
+      <div class="p-projects">
+
+        <!-- TODO: replace with your actual projects, duplicate this block as needed -->
+        <div class="p-project">
+          <p class="p-project__name">Project Name</p>
+          <p class="p-project__desc">Short description of what this project is, what problem it solves, and your role in it.</p>
+          <a href="#" class="p-project__link">View project &rarr;</a>
+        </div>
+
+        <div class="p-project">
+          <p class="p-project__name">Project Name</p>
+          <p class="p-project__desc">Short description of what this project is, what problem it solves, and your role in it.</p>
+          <a href="#" class="p-project__link">View project &rarr;</a>
+        </div>
+
+      </div>
+    </section>
+
+    <footer class="p-footer">
+      Part of <a href="index.html">Cirpi Services</a> &mdash; &copy; 2025
+    </footer>
+
+  </div>
+
+</body>
+</html>

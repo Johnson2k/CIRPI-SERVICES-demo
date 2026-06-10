@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cirpi Services — Meet Our Team</title>
+  <style>
+/* ============================================================
+   Cirpi Services — Team Showcase  |  style.css
+   Design: Dark navy + spectrum accent cards
+   Fonts: Syne (display) + Inter (body)
+   ============================================================ */
+
+/* ---- CSS Custom Properties ---- */
+:root {
+  --bg-base:       #080D1A;
+  --bg-hero:       #0A0F1E;
+  --bg-card:       #111827;
+  --bg-card-hover: #141e30;
+  --bg-surface:    #1A2035;
+  --bg-chip:       #1E2740;
+  --bg-chip-active:#1D3461;
+
+  --text-primary:  #E2E8F0;
+  --text-secondary:#8B98B1;
+  --text-muted:    #4A5568;
+
+  --accent-blue:   #4F8EF7;
+  --accent-glow:   rgba(79, 142, 247, 0.18);
+
+  --border:        rgba(255,255,255,0.07);
+  --border-card:   rgba(255,255,255,0.06);
+
+  --radius-card:   18px;
+  --radius-chip:   100px;
+  --radius-btn:    10px;
+
+  --shadow-card:   0 4px 24px rgba(0,0,0,0.45);
+  --shadow-hover:  0 14px 40px rgba(0,0,0,0.6), 0 2px 8px rgba(79,142,247,0.1);
+
+  --transition:    0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-display:  'Syne', system-ui, sans-serif;
+  --font-body:     'Inter', system-ui, sans-serif;
+}
+
+/* ---- Reset & Base ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  /* Subtle grid texture */
+  background-image:
+    radial-gradient(circle at 20% 0%, rgba(79,142,247,0.06) 0%, transparent 55%),
+    radial-gradient(circle at 80% 90%, rgba(167,139,250,0.05) 0%, transparent 50%);
+}
+
+/* ---- Utility ---- */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  background: var(--bg-hero);
+  border-bottom: 1px solid var(--border);
+  padding: 72px 24px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative glow orb behind hero */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -120px; left: 50%;
+  transform: translateX(-50%);
+  width: 700px; height: 400px;
+  background: radial-gradient(ellipse, rgba(79,142,247,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 48px 64px;
+  align-items: start;
+}
+
+/* Brand row spans both columns */
+.hero__brand {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--accent-blue) 0%, #818CF8 100%);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  border-radius: 10px;
+}
+
+.logo-mark--sm {
+  width: 30px; height: 30px;
+  font-size: 11px;
+  border-radius: 7px;
+}
+
+.logo-name {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.01em;
+}
+
+/* Hero copy */
+.hero__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hero__eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-blue);
+}
+
+.hero__headline {
+  font-family: var(--font-display);
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 800;
+  line-height: 1.08;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.hero__headline em {
+  font-style: normal;
+  background: linear-gradient(135deg, #4F8EF7 0%, #A78BFA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero__sub {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 420px;
+  line-height: 1.7;
+}
+
+/* Hero stats */
+.hero__stats {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: center;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat__num {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4vw, 52px);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.stat__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Divider between stats */
+.stat + .stat {
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+/* ============================================================
+   FILTER BAR
+   ============================================================ */
+.filter-bar {
+  background: var(--bg-hero);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.filter-bar__inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Search input */
+.search-wrap {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px; top: 50%;
+  transform: translateY(-50%);
+  width: 16px; height: 16px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.search-input {
+  background: var(--bg-chip);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-chip);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 13px;
+  padding: 7px 16px 7px 36px;
+  width: 220px;
+  outline: none;
+  transition: all var(--transition);
+}
+
+.search-input::placeholder { color: var(--text-muted); }
+
+.search-input:focus {
+  border-color: rgba(79,142,247,0.5);
+  background: #1a2035;
+  box-shadow: 0 0 0 3px rgba(79,142,247,0.12);
+}
+
+/* ============================================================
+   TEAM GRID
+   ============================================================ */
+#teamSection {
+  padding: 56px 24px 80px;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* ============================================================
+   EMPLOYEE CARD
+   ============================================================ */
+.card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  /* Entry animation */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: cardEnter 0.5s var(--transition) forwards;
+}
+
+/* Stagger card entry animations (JS also handles this, but CSS fallback) */
+.card:nth-child(1)  { animation-delay: 0.05s; }
+.card:nth-child(2)  { animation-delay: 0.10s; }
+.card:nth-child(3)  { animation-delay: 0.15s; }
+.card:nth-child(4)  { animation-delay: 0.20s; }
+.card:nth-child(5)  { animation-delay: 0.25s; }
+.card:nth-child(6)  { animation-delay: 0.30s; }
+.card:nth-child(7)  { animation-delay: 0.35s; }
+.card:nth-child(8)  { animation-delay: 0.40s; }
+.card:nth-child(9)  { animation-delay: 0.45s; }
+.card:nth-child(10) { animation-delay: 0.50s; }
+.card:nth-child(11) { animation-delay: 0.55s; }
+
+@keyframes cardEnter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover lift */
+.card:hover {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(79,142,247,0.2);
+}
+
+/* Color accent top stripe */
+.card__accent {
+  height: 4px;
+  background: var(--accent, var(--accent-blue));
+  flex-shrink: 0;
+}
+
+/* Avatar section */
+.card__avatar-wrap {
+  position: relative;
+  padding: 24px 24px 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.card__avatar {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--bg-surface);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  transition: transform var(--transition);
+}
+
+.card__avatar--placeholder {
+  background: var(--bg-surface);
+  border: 2px dashed rgba(255,255,255,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.card__avatar--placeholder::after {
+  content: '';
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  position: absolute;
+  top: 10px;
+}
+
+.card__avatar--placeholder::before {
+  content: '';
+  width: 44px; height: 22px;
+  border-radius: 22px 22px 0 0;
+  background: rgba(255,255,255,0.06);
+  position: absolute;
+  bottom: 0;
+}
+
+.card:hover .card__avatar {
+  transform: scale(1.06);
+}
+
+/* Card clickable cursor */
+.card {
+  cursor: pointer;
+}
+
+/* Portfolio hover hint */
+.card__portfolio-hint {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(79,142,247,0.18), transparent);
+  color: var(--accent-blue);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-align: center;
+  padding: 18px 0 10px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity var(--transition), transform var(--transition);
+  pointer-events: none;
+  border-radius: 0 0 var(--radius-card) var(--radius-card);
+}
+
+.card:hover .card__portfolio-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Toast notification */
+#cs-toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 100px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  opacity: 0;
+  transition: opacity 0.25s, transform 0.25s;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+#cs-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Active status badge */
+.card__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #34D399;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.card__status::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34D399;
+  box-shadow: 0 0 6px #34D399;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Card body text */
+.card__body {
+  padding: 16px 24px 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.card__name {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.card__role {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.card__desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* Card footer with social buttons */
+.card__footer {
+  padding: 14px 24px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid var(--border-card);
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: var(--radius-btn);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all var(--transition);
+}
+
+.social-btn svg { width: 16px; height: 16px; }
+
+.social-btn:hover {
+  background: var(--accent-glow);
+  border-color: rgba(79,142,247,0.4);
+  color: var(--accent-blue);
+  transform: translateY(-2px);
+}
+
+/* Hidden card (filtered out) */
+.card[hidden] {
+  display: none;
+}
+
+/* No results styles removed */
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 24px;
+  background: var(--bg-hero);
+}
+
+.site-footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.site-footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.site-footer__copy {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.site-footer__tagline {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .card:hover {
+    transform: none;
+  }
+  .card__avatar,
+  .social-btn {
+    transition: none;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* Tablet */
+@media (max-width: 900px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .hero__stats {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .stat + .stat {
+    padding-top: 0;
+    border-top: none;
+    padding-left: 24px;
+    border-left: 1px solid var(--border);
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .hero { padding: 48px 16px 56px; }
+  .hero__inner { gap: 24px; }
+
+  .hero__headline { font-size: 38px; }
+
+  .filter-bar__inner { gap: 12px; }
+  .search-wrap { width: 100%; }
+  .search-input { width: 100%; }
+
+  #teamSection { padding: 32px 16px 64px; }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+  </style>
+  <!-- Google Fonts: Syne (display) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===== HEADER / HERO ===== -->
+  <header class="hero">
+    <div class="hero__inner">
+
+      <div class="hero__brand">
+        <!-- Logo mark -->
+        <span class="logo-mark" aria-hidden="true">CS</span>
+        <span class="logo-name">Cirpi Services</span>
+      </div>
+
+      <div class="hero__copy">
+        <p class="hero__eyebrow">The people behind the product</p>
+        <h1 class="hero__headline">Meet Our<br /><em>Team</em></h1>
+        <p class="hero__sub">
+          Curious minds, relentless builders, and empathetic designers —
+          united by one mission: shipping work that matters.
+        </p>
+      </div>
+
+      <div class="hero__stats">
+        <div class="stat">
+          <span class="stat__num">11</span>
+          <span class="stat__label">Team Members</span>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ===== FILTER BAR ===== -->
+  <section class="filter-bar" aria-label="Search team">
+    <div class="container">
+      <div class="filter-bar__inner">
+        <!-- Search input -->
+        <div class="search-wrap">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="search" id="searchInput" class="search-input" placeholder="Search by name or role…" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TEAM GRID ===== -->
+  <main class="container" id="teamSection">
+    <div class="team-grid" id="teamGrid">
+
+      <!-- Card 1 -->
+      <article class="card" data-name="johnson" data-role="senior developer" data-portfolio="johnson.html">
+        <div class="card__accent" style="--accent:#4F8EF7"></div>
+        <div class="card__avatar-wrap">
+          <div class="card__avatar card__avatar--placeholder"></div>
+        </div>
+        <div class="card__body">
+          <span class="card__status">Active</span>
+          <h2 class="card__name">Johnson</h2>
+          <p class="card__role">Senior Developer</p>
+          <p class="card__desc">Builds scalable backend systems and loves optimizing for performance. Coffee-driven, documentation-obsessed.</p>
+        </div>
+        <div class="card__footer">
+          <a href="#" class="social-btn" aria-label="LinkedIn" title="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="GitHub" title="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Email" title="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+        <div class="card__portfolio-hint">View Portfolio &rarr;</div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="card" data-name="nithish" data-role="ux designer" data-portfolio="nithish.html">
+        <div class="card__accent" style="--accent:#A78BFA"></div>
+        <div class="card__avatar-wrap">
+          <div class="card__avatar card__avatar--placeholder"></div>
+        </div>
+        <div class="card__body">
+          <span class="card__status">Active</span>
+          <h2 class="card__name">Nithish</h2>
+          <p class="card__role">UX Designer</p>
+          <p class="card__desc">Crafts intuitive interfaces rooted in empathy. Sketches wireframes on napkins and ships pixel-perfect Figma files.</p>
+        </div>
+        <div class="card__footer">
+          <a href="#" class="social-btn" aria-label="LinkedIn" title="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="GitHub" title="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Email" title="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+        <div class="card__portfolio-hint">View Portfolio &rarr;</div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="card" data-name="ithaya" data-role="product manager" data-portfolio="ithaya.html">
+        <div class="card__accent" style="--accent:#34D399"></div>
+        <div class="card__avatar-wrap">
+          <div class="card__avatar card__avatar--placeholder"></div>
+        </div>
+        <div class="card__body">
+          <span class="card__status">Active</span>
+          <h2 class="card__name">Ithaya</h2>
+          <p class="card__role">Product Manager</p>
+          <p class="card__desc">Turns roadmaps into shipped features. Fluent in data, user stories, and calming stakeholder nerves.</p>
+        </div>
+        <div class="card__footer">
+          <a href="#" class="social-btn" aria-label="LinkedIn" title="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="GitHub" title="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Email" title="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+        <div class="card__portfolio-hint">View Portfolio &rarr;</div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="card" data-name="sandy" data-role="frontend developer" data-portfolio="sandy.html">
+        <div class="card__accent" style="--accent:#F472B6"></div>
+        <div class="card__avatar-wrap">
+          <div class="card__avatar card__avatar--placeholder"></div>
+        </div>
+        <div class="card__body">
+          <span class="card__status">Active</span>
+          <h2 class="card__name">Sandy</h2>
+          <p class="card__role">Frontend Developer</p>
+          <p class="card__desc">Lives in CSS and React land. Obsessed with micro-animations and accessibility-first component design.</p>
+        </div>
+        <div class="card__footer">
+          <a href="#" class="social-btn" aria-label="LinkedIn" title="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="GitHub" title="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Email" title="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+        <div class="card__portfolio-hint">View Portfolio &rarr;</div>
+      </article>
+
+      <!-- Card 5 -->
+      <article class="card" data-name="hari" data-role="growth lead" data-portfolio="hari.html">
+        <div class="card__accent" style="--accent:#FBBF24"></div>
+        <div class="card__avatar-wrap">
+          <div class="card__avatar card__avatar--placeholder"></div>
+        </div>
+        <div class="card__body">
+          <span class="card__status">Active</span>
+          <h2 class="card__name">Hari</h2>
+          <p class="card__role">Growth Lead</p>
+          <p class="card__desc">Turns funnels into flywheels. Master of growth loops, A/B tests, and sprinkling data everywhere.</p>
+        </div>
+        <div class="card__footer">
+          <a href="#" class="social-btn" aria-label="LinkedIn" title="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="GitHub" title="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Email" title="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+        <div class="card__portfolio-hint">View Portfolio &rarr;</div>
+      </article>
+
+      <!-- Card 6 -->
+      <article class="card" data-name="fazil" data-role="operations manager" data-portfolio="fazil.html">
+        <div class="card__accent" style="--accent:#F87171"></div>
+        <div class="card__avatar-wrap">
+          <div class="card__avatar card__avatar--placeholder"></div>
+        </div>
+        <div class="card__body">
+          <span class="card__status">Active</span>
+          <h2 class="card__name">Fazil</h2>
+          <p class="card__role">Operations Manager</p>
+          <p class="card__desc">Keeps the engine running smoothly. From vendor contracts to team rituals — nothing falls through the cracks.</p>
+        </div>
+        <div class="card__footer">
+          <a href="#" class="social-btn" aria-label="LinkedIn" title="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="GitHub" title="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Email" title="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+        <div class="card__portfolio-hint">View Portfolio &rarr;</div>
+      </article>
+
+      <!-- Card 7 -->
+      <article class="card" data-name="loki" data-role="devops engineer" data-portfolio="loki.html">
+        <div class="card__accent" style="--accent:#38BDF8"></div>
+        <div class="card__avatar-wrap">
+          <div class="card__avatar card__avatar--placeholder"></div>
+        </div>
+        <div class="card__body">
+          <span class="card__status">Active</span>
+          <h2 class="card__name">Loki</h2>
+          <p class="card__role">DevOps Engineer</p>
+          <p class="card__desc">CI/CD pipelines are his happy place. Keeps deployments green, infrastructure resilient, and oncall quiet.</p>
+        </div>
+        <div class="card__footer">
+          <a href="#" class="social-btn" aria-label="LinkedIn" title="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="GitHub" title="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Email" title="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+        <div class="card__portfolio-hint">View Portfolio &rarr;</div>
+      </article>
+
+      <!-- Card 8 -->
+      <article class="card" data-name="barath" data-role="brand designer" data-portfolio="barath.html">
+        <div class="card__accent" style="--accent:#C084FC"></div>
+        <div class="card__avatar-wrap">
+          <div class="card__avatar card__avatar--placeholder"></div>
+        </div>
+        <div class="card__body">
+          <span class="card__status">Active</span>
+          <h2 class="card__name">Barath</h2>
+          <p class="card__role">Brand Designer</p>
+          <p class="card__desc">Sculpts visual identity from a blank brief. Typography nerd, color system builder, logo perfectionist.</p>
+        </div>
+        <div class="card__footer">
+          <a href="#" class="social-btn" aria-label="LinkedIn" title="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="GitHub" title="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Email" title="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+        <div class="card__portfolio-hint">View Portfolio &rarr;</div>
+      </article>
+
+      <!-- Card 9 -->
+      <article class="card" data-name="vanisha" data-role="data analyst" data-portfolio="vanisha.html">
+        <div class="card__accent" style="--accent:#6EE7B7"></div>
+        <div class="card__avatar-wrap">
+          <div class="card__avatar card__avatar--placeholder"></div>
+        </div>
+        <div class="card__body">
+          <span class="card__status">Active</span>
+          <h2 class="card__name">Vanisha</h2>
+          <p class="card__role">Data Analyst</p>
+          <p class="card__desc">Hunts for signal in noisy datasets. Dashboards, SQL queries, and cohort analyses are his love language.</p>
+        </div>
+        <div class="card__footer">
+          <a href="#" class="social-btn" aria-label="LinkedIn" title="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="GitHub" title="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Email" title="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+        <div class="card__portfolio-hint">View Portfolio &rarr;</div>
+      </article>
+
+      <!-- Card 10 -->
+      <article class="card" data-name="kavitha" data-role="content strategist" data-portfolio="kavitha.html">
+        <div class="card__accent" style="--accent:#FB923C"></div>
+        <div class="card__avatar-wrap">
+          <div class="card__avatar card__avatar--placeholder"></div>
+        </div>
+        <div class="card__body">
+          <span class="card__status">Active</span>
+          <h2 class="card__name">Kavitha</h2>
+          <p class="card__role">Content Strategist</p>
+          <p class="card__desc">Writes with clarity and conviction. Owns the brand voice across docs, social, and long-form storytelling.</p>
+        </div>
+        <div class="card__footer">
+          <a href="#" class="social-btn" aria-label="LinkedIn" title="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="GitHub" title="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Email" title="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+        <div class="card__portfolio-hint">View Portfolio &rarr;</div>
+      </article>
+
+      <!-- Card 11 -->
+      <article class="card" data-name="priya" data-role="it infrastructure lead" data-portfolio="priya.html">
+        <div class="card__accent" style="--accent:#818CF8"></div>
+        <div class="card__avatar-wrap">
+          <div class="card__avatar card__avatar--placeholder"></div>
+        </div>
+        <div class="card__body">
+          <span class="card__status">Active</span>
+          <h2 class="card__name">Priya</h2>
+          <p class="card__role">IT Infrastructure Lead</p>
+          <p class="card__desc">Owns the network, the security policies, and the Wi-Fi password. Zero-trust advocate, helpdesk hero.</p>
+        </div>
+        <div class="card__footer">
+          <a href="#" class="social-btn" aria-label="LinkedIn" title="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="GitHub" title="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Email" title="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+        <div class="card__portfolio-hint">View Portfolio &rarr;</div>
+      </article>
+
+    </div><!-- /team-grid -->
+
+  </main>
+
+  <div id="cs-toast">🔗 Portfolio coming soon</div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <div class="site-footer__brand">
+        <span class="logo-mark logo-mark--sm">CS</span>
+        <span class="logo-name">Cirpi Services</span>
+      </div>
+      <p class="site-footer__copy">&copy; 2025 Cirpi Services. All rights reserved.</p>
+      <p class="site-footer__tagline">Built with purpose. Shipped with care.</p>
+    </div>
+  </footer>
+
+  <script>
+(function () {
+  "use strict";
+
+  const searchInput = document.getElementById("searchInput");
+  const teamCards   = document.querySelectorAll(".card");
+  const toast       = document.getElementById("cs-toast");
+  let toastTimer;
+  let searchQuery   = "";
+
+  /* ---- Portfolio click ---- */
+  teamCards.forEach(function (card) {
+    card.addEventListener("click", function (e) {
+      if (e.target.closest(".social-btn")) return; // let social buttons work normally
+      const url = card.getAttribute("data-portfolio");
+      if (url && url !== "#") {
+        window.location.href = url;
+      } else {
+        showToast("\uD83D\uDD17 Portfolio coming soon");
+      }
+    });
+  });
+
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toast.classList.remove("show"); }, 2500);
+  }
+
+  /* ---- Search ---- */
+  function applySearch() {
+    const q = searchQuery.trim().toLowerCase();
+    teamCards.forEach(function (card) {
+      const name = (card.getAttribute("data-name") || "").toLowerCase();
+      const role = (card.getAttribute("data-role") || "").toLowerCase();
+      const match = q === "" || name.includes(q) || role.includes(q);
+      match ? card.removeAttribute("hidden") : card.setAttribute("hidden", "");
+    });
+  }
+
+  searchInput.addEventListener("input", function () {
+    searchQuery = searchInput.value;
+    applySearch();
+  });
+
+  searchInput.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") { searchInput.value = ""; searchQuery = ""; applySearch(); }
+  });
+
+  /* ---- Intersection Observer ---- */
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.1 });
+    teamCards.forEach(function (card) { observer.observe(card); });
+  }
+
+})();
+  </script>
+</body>
+</html>
